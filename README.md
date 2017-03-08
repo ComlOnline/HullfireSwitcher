@@ -8,6 +8,12 @@ How to Install liquidsoap
 
 It is tested as working on Ubuntu Server LTS 16.04.2 If you follow this script to the letter you will also install webmin 1.831, if you dont want that then just remove that.
 
+## To Do:
+- [ ] Remove passwords from inital script
+- [ ] Make the script use a Variables file
+- [ ] Upload script
+- [ ] Remove curseing from PHP and Upload.
+
 ```
 sudo apt-get update && sudo apt-get -y dist-upgrade
 sudo apt-get -y install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python autoconf libtool libxml-dom-perl festival automake g++ ocaml samba
