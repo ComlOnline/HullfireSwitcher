@@ -5,10 +5,10 @@ Its frontend GUI (the one php File) is a large adaption of The LiquidSoap-Recues
 https://github.com/QuinnEbert/Liquidsoap-Requester/
 
 ## To Do:
-- [ ] Remove passwords from inital script
+- [X] Remove passwords from inital script
 - [ ] Make the script use a Variables file
-- [ ] Upload script
-- [ ] Remove curseing from PHP and Upload.
+- [X] Upload script
+- [ ] Remove curseing from PHP ~~and Upload~~(oops).
 
 ## How to Install liquidsoap
 
