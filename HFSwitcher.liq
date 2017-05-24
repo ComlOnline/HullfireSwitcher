@@ -8,9 +8,12 @@ set("server.telnet.bind_addr","0.0.0.0")
 set("log.level",3)
 set("log.stdout",false)
 
-%include "passwords.liq"
+%include "outputs.liq"
+#%include "passwords.liq"
 #In the command %include "file" the path is relative to the script file. In %include <file>, it is relative to the library directory of liquidsoap.
 
+
+unionautodj = interactive.bool("unionautodj", false)
 swextob = interactive.bool("swextob", false)
 swstudio1 = interactive.bool("swstudio1", true)
 swstudio = interactive.bool("swstudio", false)
@@ -86,46 +89,12 @@ radio = normalize(radio)
 #vu = visu.volume(radio)
 #print(vu)
 
-out_mp3 = output.icecast(%mp3(bitrate=256), 
-    password="hullice", 
-    host="hullfire-radio.hull.ac.uk",
-    genre="Student",
-    url="radio.hullfire.com",
-    description="Hullfire Raido, Hull univercity student media",
-    name="Hullfire Radio")
 
-out_aacp = output.icecast(%aac+
-    (channels=2, 
-    bitrate=256),
-    host="hullfire-radio.hull.ac.uk",
-    password="hullice",
-    url="radio.hullfire.com",
-    description="Hullfire Raido, Hull univercity student media",
-    genre="Student",
-    name="Hullfire Radio")
+#Switch for union auto DJ over ride
+union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
 
-out_aacp_low = output.icecast(%fdkaac
-    (channels=2, 
-	aot="mpeg2_he_aac_v2",
-    bitrate=64),
-    host="hullfire-radio.hull.ac.uk",
-    password="hullice",
-    url="radio.hullfire.com",
-    description="Hullfire Raido, Hull univercity student media",
-    genre="Student",
-    name="Hullfire Radio")
+out_aacp_low(,mount="Test.aacp",radio)
 
 
-#aacp code removed
-#fallible = true,
-#restart = true,
-#restart_delay = 5,
-
-
-
-#out_aacp(port=8000,mount="HullfireRadio.aacp",radio)
-#out_mp3(port=8000,mount="HullfireRadio.mp3",radio)
-#out_aacp_low(port=8000,mount="HullfireRadioLow.aacp",radio)
-out_mp3(port=8000,mount="Test.mp3",radio)
-out_aacp_low(port=8000,mount="Test.aacp",radio)
-
+out_aux(mount="aux",radio)
+out_union(mount="union",union)
