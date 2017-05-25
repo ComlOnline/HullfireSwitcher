@@ -4,13 +4,13 @@
 out_mp3 = output.icecast(%mp3(bitrate=128), 
     password=passpublic, 
     host="hullfire-radio.hull.ac.uk",
-	port="8000",
+	port=8000,
     genre="Student",
     url="radio.hullfire.com",
     description="Hullfire Raido, Hull univercity student media",
     name="Hullfire Radio")
 
-out_aacp64 = output.icecast( %aac+
+out_aacp64 = output.icecast(%aac+
     (channels=2, 
     bitrate=64),
     host="hullfire-radio.hull.ac.uk",
@@ -75,7 +75,7 @@ out_autodj = output.icecast(%aac+
     (channels=2, 
     bitrate=256),
     host="hfr-vh1-centice.hull.ac.uk",
-	port="8000",
+	port=8000,
     password=passcent,
     url="radio.hullfire.com",
     description="Hullfire Raido, Hull univercity student media",
