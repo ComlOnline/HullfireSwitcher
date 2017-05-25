@@ -10,7 +10,7 @@ out_mp3 = output.icecast(%mp3(bitrate=128),
     description="Hullfire Raido, Hull univercity student media",
     name="Hullfire Radio")
 
-out_aacp64 = output.icecast(%aac+,
+out_aacp64 = output.icecast(%fdkaac
     (channels=2, 
     bitrate=64),
     host="hullfire-radio.hull.ac.uk",
