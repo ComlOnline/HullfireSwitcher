@@ -66,7 +66,7 @@ outage = audio_to_stereo(outage)
 #)
 
 
-master = mix(?id:Master,[studio1, studio2, ob, autodj])
+master = mix(id(Master),[studio1, studio2, ob, autodj])
 
 radio = fallback(
 		id="http_input fallback",
