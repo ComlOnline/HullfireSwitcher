@@ -44,9 +44,9 @@ end
 
 #Input harbors!
 
-autodj = input.harbor("autodj",port=8000,password=passharbor)
-studio1 = input.harbor("studio1",port=8000,password=passharbor)
-studio2 = input.harbor("studio2",port=8000,password=passharbor)
+autodj = input.harbor(id="autodj","autodj",port=8000,password=passharbor)
+studio1 = input.harbor(id="studio1"."studio1",port=8000,password=passharbor)
+studio2 = input.harbor(id="studio2","studio2",port=8000,password=passharbor)
 oburl = "http://hullfire-radio.hull.ac.uk:8000/HullfireRadio.mp3"
 ob = mksafe(input.http(oburl))
 
