@@ -48,7 +48,7 @@ autodj = input.harbor("autodj",port=8000,password=passharbor)
 studio1 = input.harbor("studio1",port=8000,password=passharbor)
 studio2 = input.harbor("studio2",port=8000,password=passharbor)
 oburl = "http://hullfire-radio.hull.ac.uk:8000/HullfireRadio.mp3"
-ob = mksafe(input.http(extoburl))
+ob = mksafe(input.http(oburl))
 
 
 #Noise for worst case
