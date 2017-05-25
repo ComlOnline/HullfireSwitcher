@@ -89,6 +89,7 @@ radio = normalize(radio)
 
 
 #Switch for union auto DJ over ride
+autodj = mksafe(autodj)
 union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
 
 out_mp3(mount="HullfireRadio.mp3",radio)
