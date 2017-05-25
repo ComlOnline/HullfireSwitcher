@@ -1,4 +1,4 @@
-set("log.file.path","/tmp/Switcher.log")
+set("log.file.path","/tmp/HFRSwitcher.log")
 set("server.telnet",true)
 set("server.telnet.port", 1234)
 set("harbor.bind_addr","0.0.0.0")
@@ -8,8 +8,9 @@ set("server.telnet.bind_addr","0.0.0.0")
 set("log.level",3)
 set("log.stdout",false)
 
+
+%include "passwords.liq"
 %include "outputs.liq"
-#%include "passwords.liq"
 #In the command %include "file" the path is relative to the script file. In %include <file>, it is relative to the library directory of liquidsoap.
 
 
@@ -40,17 +41,17 @@ def next(j,a,b)
 	)    
 end
 
-autodj = input.harbor("autodj",port=8000,password=harbor)
 
-studio1 = input.harbor("studio1",port=8000,password=harbor)
+#Input harbors!
 
-studio2 = input.harbor("studio2",port=8000,password=harbor)
+autodj = input.harbor("autodj",port=8000,password=harbor432)
+studio1 = input.harbor("studio1",port=8000,password=harbor432)
+studio2 = input.harbor("studio2",port=8000,password=harbor432)
+oburl = "http://hullfire-radio.hull.ac.uk:8000/HullfireRadio.mp3"
+ob = mksafe(input.http(extoburl))
 
-extoburl = "http://hullfire-radio.hull.ac.uk:8000/HullfireRadio.mp3"
-extob = mksafe(input.http(extoburl))
 
-intob = input.harbor("internal",port=8000,password=harbor)
-
+#Noise for worst case
 outage = mksafe(amplify(0.05, noise(id="outage")))
 outage = audio_to_stereo(outage)
 
@@ -65,10 +66,7 @@ outage = audio_to_stereo(outage)
 #)
 
 
-ob = switch(track_sensitive=false, [(swextob,extob), ({true},intob)])
-studio = switch(track_sensitive=false, [(swstudio1,studio1), ({true},studio2)])
-master = switch(track_sensitive=false, [(swob,ob), (swstudio,studio), ({true},autodj)])
-#master = mix([ob, studio, autodj])
+master = mix(?id:Master,[studio1, studio2, ob, autodj])
 
 radio = fallback(
 		id="http_input fallback",
@@ -93,8 +91,12 @@ radio = normalize(radio)
 #Switch for union auto DJ over ride
 union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
 
-out_aacp_low(,mount="Test.aacp",radio)
+out_mp3(,mount="HullfireRadio.mp3",radio)
+out_aacp64(,mount="HullfireRadio_64.aacp",radio)
+out_aacp128(,mount="HullfireRadio_128.aacp",radio)
+out_aacp256(,mount="HullfireRadio_256.aacp",radio)
 
 
 out_aux(mount="aux",radio)
 out_union(mount="union",union)
+out_autodj(mount="autodj",autodj)
