@@ -21,7 +21,7 @@ out_aacp64 = output.icecast(%fdkaac
     genre="Student",
     name="Hullfire Radio")
 	
-out_aacp128 = output.icecast(%aac+,
+out_aacp128 = output.icecast(%fdkaac
     (channels=2, 
     bitrate=128),
     host="hullfire-radio.hull.ac.uk",
@@ -32,7 +32,7 @@ out_aacp128 = output.icecast(%aac+,
     genre="Student",
     name="Hullfire Radio")
 	
-out_aacp256 = output.icecast(%aac+,
+out_aacp256 = output.icecast(%fdkaac
     (channels=2, 
     bitrate=256),
     host="hullfire-radio.hull.ac.uk",
@@ -46,7 +46,7 @@ out_aacp256 = output.icecast(%aac+,
 	
 	
 #exta output to centice
-out_aux = output.icecast(%aac+,
+out_aux = output.icecast(%fdkaac
     (channels=2, 
     bitrate=256),
     host="hfr-vh1-centice.hull.ac.uk",
@@ -59,7 +59,7 @@ out_aux = output.icecast(%aac+,
 	
 	
 #output for union via centice
-out_union = output.icecast(%aac+,
+out_union = output.icecast(%fdkaac
     (channels=2, 
     bitrate=256),
     host="hfr-vh1-centice.hull.ac.uk",
@@ -71,7 +71,7 @@ out_union = output.icecast(%aac+,
     name="Hullfire Radio")
 	
 #output for autodj to centice
-out_autodj = output.icecast(%aac+,
+out_autodj = output.icecast(%fdkaac
     (channels=2, 
     bitrate=256),
     host="hfr-vh1-centice.hull.ac.uk",
