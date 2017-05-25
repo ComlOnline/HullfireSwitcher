@@ -87,7 +87,7 @@ radio = normalize(radio)
 #vu = visu.volume(radio)
 #print(vu)
 
-
+output.dummy(fallible=true, ob)
 #Switch for union auto DJ over ride
 autodj = mksafe(autodj)
 union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
