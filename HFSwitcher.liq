@@ -92,7 +92,7 @@ radio = normalize(radio)
 autodj = mksafe(autodj)
 union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
 
-out_mp3(mount="HullfireRadio.mp3",radio)
+out_mp3(mount="HullfireRadio2.mp3",radio)
 out_aacp64(mount="HullfireRadio_64.aacp",radio)
 out_aacp128(mount="HullfireRadio_128.aacp",radio)
 out_aacp256(mount="HullfireRadio_256.aacp",radio)
