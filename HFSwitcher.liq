@@ -6,7 +6,7 @@ set("harbor.verbose", true)
 set("root.max_latency",60.)
 set("server.telnet.bind_addr","0.0.0.0")
 set("log.level",3)
-set("log.stdout",false)
+set("log.stdout",true)
 
 
 %include "passwords.liq"
