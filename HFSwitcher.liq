@@ -74,7 +74,7 @@ radio = fallback(
 		transitions=[ next(jingle),next(jingle) ],
 		[
 			master,
-			autodj
+			autodj,
 			localtracks,
 			outage
 		]
