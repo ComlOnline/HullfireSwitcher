@@ -20,6 +20,7 @@ swstudio1 = interactive.bool("swstudio1", true)
 swstudio = interactive.bool("swstudio", false)
 swob = interactive.bool("swob", false)
 
+
 songs = playlist("/hullfire/songs/")
 jingle = playlist(mode='random',"/hullfire/jingles/")
 
@@ -80,10 +81,9 @@ radio = fallback(
 		]
 )
 
-#Radio Processing
-radio = mksafe(radio)
-radio = normalize(radio)
-#radio = audio_process(radio)
+union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
+
+
 
 #vu = visu.volume(radio)
 #print(vu)
@@ -91,7 +91,20 @@ radio = normalize(radio)
 output.dummy(fallible=true, ob)
 #Switch for union auto DJ over ride
 autodj = mksafe(autodj)
+
+radio = switch(track_sensitive=false, [(swstudio1,studio1), ({true},autodj)])
 union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
+
+#Radio Processing
+radio = mksafe(radio)
+radio = normalize(radio)
+#radio = audio_process(radio)
+
+union = mksafe(union)
+union = normalize(union)
+
+autodj = mksafe(autodj)
+autodj = normalize(autodj)
 
 
 out_mp3(mount="HullfireRadio2.mp3",radio)

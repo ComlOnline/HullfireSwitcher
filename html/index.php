@@ -60,7 +60,7 @@ function cpu_stat() {
     if (!$fp) {
                 return("<b><u>TELNET FAILURE:</u> $errstr ($errno)</b><br>");
     }   else {
-                fwrite($fp, "var.set swstudio1 = true\nvar.set swstudio = true\nvar.set swob = false\nquit\n");
+                fwrite($fp, "var.set swstudio1 = true\nquit\n");
                 $eat = '';
                 while (!feof($fp)) {
                         $eat .= fgets($fp, 1024);
@@ -90,7 +90,7 @@ function cpu_stat() {
     if (!$fp) {
                 return("<b><u>TELNET FAILURE:</u> $errstr ($errno)</b><br>");
     }   else {
-                fwrite($fp, "var.set swob = false\nvar.set swstudio = false\nquit\n");
+                fwrite($fp, "var.set swstudio1 = false\nquit\n");
                 $eat = '';
                 while (!feof($fp)) {
                         $eat .= fgets($fp, 1024);
@@ -161,7 +161,7 @@ function cpu_stat() {
 <tr>
 <td valign="middle" align="center">
 <p><img src="hflogo.png" alt="Smiley face" style="float:left;width:300px;height:100px;">
-<h2>Welcome to the Hullfire radio source switcher.<br>Please contact Colm if it shits it's self.</h2></p>
+<h2>Welcome to the Hullfire radio source switcher.<br>Please contact Colm if it goes wrong.<br>More sources will be added soon</h2></p>
 
 </td>
 <td valign="middle" align="center">
@@ -214,26 +214,26 @@ echo $localIP;
         .'Click Here to Activate Studio 1'
         .'</a></td></tr>'."\n");
 }
-{echo('<tr><td colspan="2" valign="top" align="center">'
+/* {echo('<tr><td colspan="2" valign="top" align="center">'
         .'<a href="'.basename(__FILE__).'?act=studio2">'
         .'Click Here to Activate Studio 2'
         .'</a></td></tr>'."\n");
-}
+} */
 {echo('<tr><td colspan="2" valign="top" align="center">'
         .'<a href="'.basename(__FILE__).'?act=AutoDJ">'
         .'Click Here to Activate AutoDJ'
         .'</a></td></tr>'."\n");
 }
-{echo('<tr><td colspan="2" valign="top" align="center">'
+/* {echo('<tr><td colspan="2" valign="top" align="center">'
         .'<a href="'.basename(__FILE__).'?act=extob">'
         .'Click Here to Activate external OB'
         .'</a></td></tr>'."\n");
-}
-{echo('<tr><td colspan="2" valign="top" align="center">'
+} */
+/* {echo('<tr><td colspan="2" valign="top" align="center">'
         .'<a href="'.basename(__FILE__).'?act=intob">'
         .'Click Here to Activate internal OB'
         .'</a></td></tr>'."\n");
-}
+} */
 ?>
 <tr>
 <td colspan="2" valign="middle" align="center">
