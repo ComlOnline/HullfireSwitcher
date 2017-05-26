@@ -160,7 +160,7 @@ function cpu_stat() {
 <table width="100%" border="16" cellspacing="4" cellpadding="1">
 <tr>
 <td valign="middle" align="center">
-<p><img src="hflogo.png" alt="Smiley face" style="float:left;width:300px;height:100px;">
+<p><img src="hflogo.png" alt="Smiley face" style="float:left;width:450px;height:150px;">
 <h2>Welcome to the Hullfire radio source switcher.<br>Please contact Colm if it goes wrong.<br>More sources will be added soon</h2></p>
 
 </td>
