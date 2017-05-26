@@ -42,6 +42,12 @@ def next(j,a,b)
 	)    
 end
 
+def crossfade(a,b)
+  add(normalize=false,
+      [ sequence([ blank(duration=5.),
+                   fade.initial(duration=10.,b) ]),
+        fade.final(duration=10.,a) ])
+end
 
 #Input harbors!
 
@@ -81,7 +87,7 @@ radio = fallback(
 		]
 )
 
-union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
+
 
 
 
@@ -94,6 +100,10 @@ autodj = mksafe(autodj)
 
 radio = switch(track_sensitive=false, [(swstudio1,studio1), ({true},autodj)])
 union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
+
+radio = switch(track_sensitive=false,
+			transitions=[ crossfade, transition(jingle) ],
+			[(swstudio1,studio1), ({true},autodj)])
 
 #Radio Processing
 radio = mksafe(radio)
