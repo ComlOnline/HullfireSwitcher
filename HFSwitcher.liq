@@ -74,6 +74,7 @@ radio = fallback(
 		transitions=[ next(jingle),next(jingle) ],
 		[
 			master,
+			autodj
 			localtracks,
 			outage
 		]
@@ -89,8 +90,9 @@ radio = normalize(radio)
 
 output.dummy(fallible=true, ob)
 #Switch for union auto DJ over ride
-autodj = mksafe(autodj)
+#autodj = mksafe(autodj)
 union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
+
 
 out_mp3(mount="HullfireRadio2.mp3",radio)
 out_aacp64(mount="HullfireRadio_64.aacp",radio)
