@@ -9,8 +9,8 @@ set("log.level",3)
 set("log.stdout",true)
 
 
-%include "passwords.liq"
-%include "outputs.liq"
+%include "../HullfireSwitcher/passwords.liq"
+%include "../HullfireSwitcher/outputs.liq"
 #In the command %include "file" the path is relative to the script file. In %include <file>, it is relative to the library directory of liquidsoap.
 
 

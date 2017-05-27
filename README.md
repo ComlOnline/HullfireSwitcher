@@ -6,9 +6,9 @@ https://github.com/QuinnEbert/Liquidsoap-Requester/
 
 ## To Do:
 - [X] Remove passwords from inital script
-- [ ] Make the script use a Variables file
+- [X] Make the script use a Variables file
 - [X] Upload script
-- [ ] Remove curseing from PHP ~~and Upload~~(oops).
+- [X] Remove curseing from PHP ~~and Upload~~(oops).
 
 ## How to Install liquidsoap
 
@@ -31,3 +31,7 @@ opam install depext
 opam depext taglib mad lame vorbis cry fdkaac ssl soundtouch samplerate liquidsoap
 opam install taglib mad lame vorbis cry fdkaac ssl soundtouch samplerate liquidsoap
 ```
+
+
+ln -s ~/HullfireSwitcher/HFSwitcher.liq ~/liquidsoap-daemon/main.liq
+For running as a daemon
