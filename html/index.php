@@ -161,7 +161,7 @@ function cpu_stat() {
 <tr>
 <td valign="middle" align="center">
 <p><img src="hflogo.png" alt="Smiley face" style="float:left;width:450px;height:150px;">
-<h2>Welcome to the Hullfire radio source switcher.<br>Please contact Colm if it goes wrong.<br>More sources will be added soon</h2></p>
+<h2>Welcome to the Hullfire radio source switcher.<br>Please contact Colm if it goes wrong.<br>More sources will be added soon.</h2></p>
 
 </td>
 <td valign="middle" align="center">
@@ -176,6 +176,8 @@ $command="/sbin/ifconfig | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}' |
 $localIP = exec ($command);
 echo $localIP;
 ?>
+<br>
+<a href="http://hfr-vh1-centswitch.hull.ac.uk">Refresh</a>
 </h4>
 
 </td>
