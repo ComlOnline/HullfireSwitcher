@@ -102,7 +102,7 @@ radio = switch(track_sensitive=false, [(swstudio1,studio1), ({true},autodj)])
 union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
 
 radio = switch(track_sensitive=false,
-			transitions=[ crossfade, transition(jingle) ],
+			transitions=[ crossfade ],
 			[(swstudio1,studio1), ({true},autodj)])
 
 #Radio Processing
