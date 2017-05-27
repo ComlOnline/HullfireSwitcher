@@ -15,14 +15,12 @@ set("log.stdout",true)
 
 
 unionautodj = interactive.bool("unionautodj", false)
-swextob = interactive.bool("swextob", false)
-swstudio1 = interactive.bool("swstudio1", true)
-swstudio = interactive.bool("swstudio", false)
-swob = interactive.bool("swob", false)
+swstudio1 = interactive.bool("swstudio1", false)
 
 
 songs = playlist("/hullfire/songs/")
 jingle = playlist(mode='random',"/hullfire/jingles/")
+
 
 localtracks = random(weights=[1,5],[ jingle, songs ])
 
