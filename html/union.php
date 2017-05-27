@@ -54,13 +54,13 @@ function cpu_stat() {
 
 
 <?php
- function soap_studio1() {
+ function soap_radio() {
         global $ctlPort;
     $fp = stream_socket_client("tcp://localhost:$ctlPort", $errno, $errstr, 20);
     if (!$fp) {
                 return("<b><u>TELNET FAILURE:</u> $errstr ($errno)</b><br>");
     }   else {
-                fwrite($fp, "var.set swstudio1 = true\nvar.set swstudio = true\nvar.set swob = false\nquit\n");
+                fwrite($fp, "var.set unionautodj = false\nquit\n");
                 $eat = '';
                 while (!feof($fp)) {
                         $eat .= fgets($fp, 1024);
@@ -69,28 +69,14 @@ function cpu_stat() {
                 return("<b><u>GREAT:</u> Sent the Telnet command!  STUDIO 1 is set as ON-AIR</b><br>");
     }
   }
-  function soap_studio2() {
-        global $ctlPort;
-    $fp = stream_socket_client("tcp://localhost:$ctlPort", $errno, $errstr, 20);
-    if (!$fp) {
-                return("<b><u>TELNET FAILURE:</u> $errstr ($errno)</b><br>");
-    }   else {
-                fwrite($fp, "var.set swstudio1 = false\nvar.set swstudio = true\nvar.set swob = false\nquit\n");
-                $eat = '';
-                while (!feof($fp)) {
-                        $eat .= fgets($fp, 1024);
-                }
-                fclose($fp);
-                return("<b><u>GREAT:</u> Sent the Telnet command!  STUDIO 2 is set as ON-AIR</b><br>");
-    }
-  }
+
   function soap_autodj() {
         global $ctlPort;
     $fp = stream_socket_client("tcp://localhost:$ctlPort", $errno, $errstr, 20);
     if (!$fp) {
                 return("<b><u>TELNET FAILURE:</u> $errstr ($errno)</b><br>");
     }   else {
-                fwrite($fp, "var.set swob = false\nvar.set swstudio = false\nquit\n");
+                fwrite($fp, "var.set unionautodj = true\nquit\n");
                 $eat = '';
                 while (!feof($fp)) {
                         $eat .= fgets($fp, 1024);
@@ -99,36 +85,7 @@ function cpu_stat() {
                 return("<b><u>GREAT:</u> Sent the Telnet command!  The AutoDJ is set as ON-AIR</b><br>");
     }
   }
-  function soap_intob() {
-        global $ctlPort;
-    $fp = stream_socket_client("tcp://localhost:$ctlPort", $errno, $errstr, 20);
-    if (!$fp) {
-                return("<b><u>TELNET FAILURE:</u> $errstr ($errno)</b><br>");
-    }   else {
-                fwrite($fp, "var.set swextob = false\nvar.set swob = true\nvar.set swstudio = false\nquit\n");
-                $eat = '';
-                while (!feof($fp)) {
-                        $eat .= fgets($fp, 1024);
-                }
-                fclose($fp);
-                return("<b><u>GREAT:</u> Sent the Telnet command!  An internal OB is set as ON-AIR</b><br>");
-    }
-  }
-  function soap_extob() {
-        global $ctlPort;
-    $fp = stream_socket_client("tcp://localhost:$ctlPort", $errno, $errstr, 20);
-    if (!$fp) {
-                return("<b><u>TELNET FAILURE:</u> $errstr ($errno)</b><br>");
-    }   else {
-                fwrite($fp, "var.set swextob = true\nvar.set swob = true\nvar.set swstudio = false\nquit\n");
-                $eat = '';
-                while (!feof($fp)) {
-                        $eat .= fgets($fp, 1024);
-                }
-                fclose($fp);
-                return("<b><u>GREAT:</u> Sent the Telnet command!  An External OB is set as ON-AIR</b><br>");
-    }
-  }
+
 
   function stl($aString) {
     return(strtolower($aString));
@@ -140,16 +97,10 @@ function cpu_stat() {
   } else {
     $act = '';
   }
-  if ($act == 'studio1') {
-      $msg .= soap_studio1();
-    }elseif($act == 'studio2') {
-      $msg .= soap_studio2();
+  if ($act == 'radio') {
+      $msg .= soap_radio();
 	}elseif($act == 'AutoDJ') {
       $msg .= soap_autodj();
-	}elseif($act == 'intob') {
-      $msg .= soap_intob();
-	}elseif($act == 'extob') {
-      $msg .= soap_extob();
 	}else {
       if ($act != '') {
         $msg .= '<b><u>ERROR:</u> The Command Given Is Unknown!</b><br>';
@@ -160,8 +111,8 @@ function cpu_stat() {
 <table width="100%" border="16" cellspacing="4" cellpadding="1">
 <tr>
 <td valign="middle" align="center">
-<p><img src="hflogo.png" alt="Smiley face" style="float:left;width:300px;height:100px;">
-<h2>Welcome to the Hullfire radio source switcher.<br>Please contact Colm if it shits it's self.</h2></p>
+<p><img src="hflogo.png" alt="Smiley face" style="float:left;width:450px;height:150px;">
+<h2>Welcome to the UNION Hullfire Audio switcher.<br>Please contact Colm if it goes wrong.<br>This is for Joes use only!</h2></p>
 
 </td>
 <td valign="middle" align="center">
@@ -176,6 +127,8 @@ $command="/sbin/ifconfig | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}' |
 $localIP = exec ($command);
 echo $localIP;
 ?>
+<br>
+<a href="http://hfr-vh1-centswitch.hull.ac.uk/union.php">Refresh</a>
 </h4>
 
 </td>
@@ -210,28 +163,13 @@ echo $localIP;
   
 
 {echo('<tr><td colspan="2" valign="top" align="center">'
-        .'<a href="'.basename(__FILE__).'?act=studio1">'
-        .'Click Here to Activate Studio 1'
-        .'</a></td></tr>'."\n");
-}
-{echo('<tr><td colspan="2" valign="top" align="center">'
-        .'<a href="'.basename(__FILE__).'?act=studio2">'
-        .'Click Here to Activate Studio 2'
+        .'<a href="'.basename(__FILE__).'?act=radio">'
+        .'Click Here to Activate radio output'
         .'</a></td></tr>'."\n");
 }
 {echo('<tr><td colspan="2" valign="top" align="center">'
         .'<a href="'.basename(__FILE__).'?act=AutoDJ">'
         .'Click Here to Activate AutoDJ'
-        .'</a></td></tr>'."\n");
-}
-{echo('<tr><td colspan="2" valign="top" align="center">'
-        .'<a href="'.basename(__FILE__).'?act=extob">'
-        .'Click Here to Activate external OB'
-        .'</a></td></tr>'."\n");
-}
-{echo('<tr><td colspan="2" valign="top" align="center">'
-        .'<a href="'.basename(__FILE__).'?act=intob">'
-        .'Click Here to Activate internal OB'
         .'</a></td></tr>'."\n");
 }
 ?>

@@ -13,7 +13,7 @@ set("log.stdout",true)
 %include "../HullfireSwitcher/outputs.liq"
 #In the command %include "file" the path is relative to the script file. In %include <file>, it is relative to the library directory of liquidsoap.
 
-
+#interactive variables for control
 unionautodj = interactive.bool("unionautodj", false)
 swstudio1 = interactive.bool("swstudio1", false)
 
@@ -96,12 +96,16 @@ output.dummy(fallible=true, ob)
 #Switch for union auto DJ over ride
 autodj = mksafe(autodj)
 
-radio = switch(track_sensitive=false, [(swstudio1,studio1), ({true},autodj)])
-union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
+#radio = switch(track_sensitive=false, [(swstudio1,studio1), ({true},autodj)])
+#union = switch(track_sensitive=false, [(unionautodj,autodj), ({true},radio)])
 
 radio = switch(track_sensitive=false,
 			transitions=[ crossfade ],
 			[(swstudio1,studio1), ({true},autodj)])
+			
+union = switch(track_sensitive=false,
+			transitions=[ crossfade ],
+			[(unionautodj,autodj), ({true},radio)])
 
 #Radio Processing
 radio = mksafe(radio)
